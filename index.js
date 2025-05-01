@@ -30,6 +30,7 @@ const factCounter = createFactCounter();
 const factInput = document.getElementById('factInput');
 const addButton = document.getElementById('addBtn');
 const factsContainer = document.getElementById('factsContainer');
+const fetchCatFactBtn = document.getElementById('fetchCatFactBtn');
 renderFacts();
 
 addButton.addEventListener('click', addFact);
@@ -79,4 +80,19 @@ factsContainer.addEventListener('click', (e) => {
   }
 });
 
+fetchCatFactBtn.addEventListener('click', async () => {
+  try {
+    const response = await fetch("https://catfact.ninja/fact");
+    const data = await response.json();
+    console.log(data);
+    funFacts.push({id: getId(), text: data['fact']});
+    factCounter.increment();
+    updateFactCount();
+    renderFacts();
+
+  } catch (error) {
+    console.error("Failed to fetch cat fact: ", error);
+    alert("Oops! Couldn't fetch a cat fact 😿");
+  }
+})
 
