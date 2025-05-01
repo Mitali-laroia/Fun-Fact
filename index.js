@@ -81,19 +81,17 @@ factsContainer.addEventListener('click', (e) => {
   }
 });
 
-fetchCatFactBtn.addEventListener('click', async () => {
-  try {
-    const response = await fetch("https://catfact.ninja/fact");
-    const data = await response.json();
-    console.log(data);
-    funFacts.push({id: getId(), text: data['fact']});
-    factCounter.increment();
-    updateFactCount();
-    renderFacts();
-
-  } catch (error) {
-    console.error("Failed to fetch cat fact: ", error);
-    alert("Oops! Couldn't fetch a cat fact 😿");
-  }
+fetchCatFactBtn.addEventListener('click', () => {
+    axios.get("https://catfact.ninja/fact")
+    .then(response => {
+      funFacts.push({id: getId(), text: response.data.fact});
+      factCounter.increment();
+      updateFactCount();
+      renderFacts();
+    })
+    .catch (error => {
+      console.error("Failed to fetch cat fact: ", error);
+      alert("Oops! Couldn't fetch a cat fact 😿");
+    })
 })
 
