@@ -58,20 +58,21 @@ function addFact() {
 function renderFacts() {
   factsContainer.innerHTML = "";
 
-  funFacts.forEach(fact => {
-    const factDiv = document.createElement('div');
-    factDiv.className = 'fact';
-    factDiv.innerHTML = `
-      <span>${fact.text}</span>
-      <button class="delete-btn" data-id="${fact.id}">Delete</button>
+  funFacts.forEach(({id, text}) => {
+    const factEl = document.createElement("div");
+    factEl.classList.add("fact");
+    factEl.dataset.id = id;
+    factEl.innerHTML = `
+      <p>${text}</p>
+      <button class="delete-btn">Delete</button>
     `;
-    factsContainer.appendChild(factDiv);
+    factsContainer.appendChild(factEl);
   });
 }
 
 factsContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('delete-btn')) {
-    const idToDelete = Number(e.target.dataset.id);
+    const idToDelete = Number(e.target.closest('.fact').dataset.id);
     const index = funFacts.findIndex(f => f.id === idToDelete);
     if (index !== -1) {
       funFacts.splice(index, 1);
