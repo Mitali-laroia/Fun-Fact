@@ -1,0 +1,52 @@
+const funFacts = [
+    {id:1 , text: "Bananas are berries, but strawberries are not!"},
+    {id:2 , text: "Honey never spoils."},
+    {id:3, text: "A day on Venus is longer than a year on Venus."}
+];
+
+const factInput = document.getElementById('factInput');
+const addButton = document.getElementById('addBtn');
+const factsContainer = document.getElementById('factsContainer');
+renderFacts();
+
+addButton.addEventListener('click', addFact);
+
+function addFact() {
+  const newFactText = factInput.value.trim();
+  
+  if (newFactText === "") {
+    alert("Please enter a fun fact!");
+    return;
+  }
+
+  funFacts.push({ id: funFacts.length + 1, text: newFactText });
+  renderFacts();
+  factInput.value = "";
+}
+
+function renderFacts() {
+  factsContainer.innerHTML = "";
+
+  funFacts.forEach(fact => {
+    const factDiv = document.createElement('div');
+    factDiv.className = 'fact';
+    factDiv.innerHTML = `
+      <span>${fact.text}</span>
+      <button class="delete-btn" data-id="${fact.id}">Delete</button>
+    `;
+    factsContainer.appendChild(factDiv);
+  });
+}
+
+factsContainer.addEventListener('click', (e) => {
+  if (e.target.classList.contains('delete-btn')) {
+    const idToDelete = Number(e.target.dataset.id);
+    const index = funFacts.findIndex(f => f.id === idToDelete);
+    if (index !== -1) {
+      funFacts.splice(index, 1);
+      renderFacts();
+    }
+  }
+});
+
+

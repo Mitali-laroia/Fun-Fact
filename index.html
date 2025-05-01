@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fun Facts Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    #factsContainer {
+      margin-top: 20px;
+    }
+    .fact {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f5f5f5;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+    .delete-btn {
+      background-color: #ff4d4d;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .delete-btn:hover {
+      background-color: #ff1a1a;
+    }
+    input, button {
+      padding: 8px 12px;
+      margin-top: 10px;
+      margin-right: 5px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧠 Fun Facts Dashboard</h1>
+
+  <input type="text" id="factInput" placeholder="Enter a new fun fact">
+  <button id="addBtn">Add Fact</button>
+
+  <div id="factsContainer">
+    <!-- Facts will be rendered here dynamically -->
+  </div>
+
+  <script src="./index.js"></script>
+
+</body>
+</html>
