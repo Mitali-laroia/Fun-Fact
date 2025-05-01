@@ -4,12 +4,40 @@ const funFacts = [
     {id:3, text: "A day on Venus is longer than a year on Venus."}
 ];
 
+function idGenerator(){
+  let currentId = 1;
+
+  return function getNextId(){
+    return currentId++;
+  };
+}
+
+function createFactCounter(){
+  let count = 0;
+
+  return {
+    increment: function(){
+      return count++;
+    },
+    getCount: function(){
+      return count
+    }
+  }
+}
+
+const getId = idGenerator();
+const factCounter = createFactCounter();
 const factInput = document.getElementById('factInput');
 const addButton = document.getElementById('addBtn');
 const factsContainer = document.getElementById('factsContainer');
 renderFacts();
 
 addButton.addEventListener('click', addFact);
+
+function updateFactCount(){
+  const displayCount = document.getElementById('factCountDisplay');
+  displayCount.textContent = `You’ve added ${factCounter.getCount()} fun facts!`;
+}
 
 function addFact() {
   const newFactText = factInput.value.trim();
@@ -19,8 +47,10 @@ function addFact() {
     return;
   }
 
-  funFacts.push({ id: funFacts.length + 1, text: newFactText });
+  funFacts.push({ id: getId, text: newFactText });
+  factCounter.increment();
   renderFacts();
+  updateFactCount();
   factInput.value = "";
 }
 
