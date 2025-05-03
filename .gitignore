@@ -1,0 +1,39 @@
+# Node.js dependencies
+node_modules/
+
+# TypeScript build output
+dist/
+build/
+
+# Log files
+*.log
+
+# TypeScript .tsbuildinfo files
+*.tsbuildinfo
+
+# IDE specific files (e.g. Visual Studio Code)
+.vscode/
+
+# Dependency directories
+bower_components/
+
+# npm package lock file (if not needed for versioning)
+package-lock.json
+yarn.lock
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# TypeScript compiled JavaScript files
+*.js
+*.d.ts
+
+# Coverage directory for testing tools
+coverage/
+
+# Environment variables file (keep private keys safe)
+.env
+
+# Ignore compiled .map files (source maps)
+*.map
